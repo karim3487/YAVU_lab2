@@ -1,7 +1,7 @@
 ﻿using System;
 namespace c_sharp_lab_2
 {
-    public struct Employee
+    public struct Animal
     {
         private string _animalName;
         private string _naturalArea;
@@ -23,7 +23,7 @@ namespace c_sharp_lab_2
          * количество животных определенной природной зоны, находящихся в зоопарке,
          * сколько денег тратится на содержание определенного животного в месяц.
          */ 
-        public Employee(string animalName, string naturalArea, int feedCosts, int countAnimal, int monthFee)
+        public Animal(string animalName, string naturalArea, int feedCosts, int countAnimal, int monthFee)
         {
             _animalName = animalName;
             _naturalArea = naturalArea;

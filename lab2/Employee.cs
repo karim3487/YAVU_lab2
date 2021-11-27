@@ -8,65 +8,65 @@ namespace c_sharp_lab_2
     internal class Program
     {
         //функция создания объекта и добавления животного в очередь с проверкой полей
-        public static Queue<Employee> AddEmployee(Queue<Employee> employeesQueue)
+        public static Queue<Animal> AddAnimal(Queue<Animal> animalsQueue)
         {
-            Employee myEmployee = new Employee();
+            Animal myAnimal = new Animal();
             Console.WriteLine("Введите название животного:");
-            myEmployee.AnimalName = Console.ReadLine();
+            myAnimal.AnimalName = Console.ReadLine();
 
             Console.WriteLine("Введите природную зону:");
-            myEmployee.NaturalArea = Console.ReadLine();
+            myAnimal.NaturalArea = Console.ReadLine();
             
 
             Console.WriteLine("Введите затраты на корм в день:");
             if (int.TryParse(Console.ReadLine(), out var checkedNumber))
             {
-                myEmployee.FeedCosts = checkedNumber;
+                myAnimal.FeedCosts = checkedNumber;
             }
             else
             {
                 Console.WriteLine("Затраты на корм в день введены неверно, значение установленно по умолчанию: " +
-                                  $"{Employee.DEFAULT_FEED_COSTS}");
-                myEmployee.FeedCosts = Employee.DEFAULT_FEED_COSTS;
+                                  $"{Animal.DEFAULT_FEED_COSTS}");
+                myAnimal.FeedCosts = Animal.DEFAULT_FEED_COSTS;
             }
 
             Console.WriteLine("Введите количество животных определенной природной зоны, находящихся в зоопарке:");
             if (int.TryParse(Console.ReadLine(), out checkedNumber))
             {
-                myEmployee.CountAnimal = checkedNumber;
+                myAnimal.CountAnimal = checkedNumber;
             }
             else
             {
                 Console.WriteLine("Количество животных определенной природной зоны, находящихся в зоопарке" +
-                                  $" введены неверно, значение установленно по умолчанию: {Employee.DEFAULT_COUNT_ANIMAL}");
-                myEmployee.CountAnimal = Employee.DEFAULT_COUNT_ANIMAL;
+                                  $" введены неверно, значение установленно по умолчанию: {Animal.DEFAULT_COUNT_ANIMAL}");
+                myAnimal.CountAnimal = Animal.DEFAULT_COUNT_ANIMAL;
             }
 
             Console.WriteLine("Введите сколько денег тратится на содержание определенного животного в месяц:");
             if (int.TryParse(Console.ReadLine(), out checkedNumber))
             {
-                myEmployee.MonthFee = checkedNumber;
+                myAnimal.MonthFee = checkedNumber;
             }
             else
             {
                 Console.WriteLine("Кол-во денег введено неверно, значение задано по умолчанию: " +
-                                  Employee.DEFAULT_MONTH_FEE);
-                myEmployee.MonthFee = Employee.DEFAULT_MONTH_FEE;
+                                  Animal.DEFAULT_MONTH_FEE);
+                myAnimal.MonthFee = Animal.DEFAULT_MONTH_FEE;
             }
 
-            employeesQueue.Enqueue(myEmployee);
+            animalsQueue.Enqueue(myAnimal);
             Console.WriteLine("Животное добавлено в список");
-            return employeesQueue;
+            return animalsQueue;
         }
 
         public static void Main(string[] args)
         {
             string filename = "animals.bin"; // файл сохраняется в lab2/bin/Debug/net5.0
 
-            Queue<Employee> employeesQueue = new Queue<Employee>();
+            Queue<Animal> animalsQueue = new Queue<Animal>();
             Console.WriteLine($"Введите название файла(название файла по умолчанию {filename}):");
             filename=Console.ReadLine();
-            int employeesCounter = 0;
+            int animalsCounter = 0;
 
             if (File.Exists(filename)) // чтение объектов класса из бинарного файла
             {
@@ -74,13 +74,13 @@ namespace c_sharp_lab_2
                 {
                     while (binaryReader.PeekChar() != -1)
                     {
-                        Employee myEmployee = new Employee();
-                        myEmployee.AnimalName = binaryReader.ReadString();
-                        myEmployee.NaturalArea = binaryReader.ReadString();
-                        myEmployee.FeedCosts = binaryReader.ReadInt32();
-                        myEmployee.CountAnimal = binaryReader.ReadInt32();
-                        myEmployee.MonthFee = binaryReader.ReadInt32();
-                        employeesQueue.Enqueue(myEmployee);
+                        Animal myAnimal = new Animal();
+                        myAnimal.AnimalName = binaryReader.ReadString();
+                        myAnimal.NaturalArea = binaryReader.ReadString();
+                        myAnimal.FeedCosts = binaryReader.ReadInt32();
+                        myAnimal.CountAnimal = binaryReader.ReadInt32();
+                        myAnimal.MonthFee = binaryReader.ReadInt32();
+                        animalsQueue.Enqueue(myAnimal);
                     }
                 }
             }
@@ -104,22 +104,22 @@ namespace c_sharp_lab_2
                 {
                     case "1":
                     {
-                        AddEmployee(employeesQueue);
+                        AddAnimal(animalsQueue);
                         break;
                     }
 
                     case "2":
                     {
-                        employeesCounter = 1;
-                        if (employeesQueue.Count != 0)
+                        animalsCounter = 1;
+                        if (animalsQueue.Count != 0)
                         {
-                            Console.WriteLine(Employee.BOARD + 
+                            Console.WriteLine(Animal.BOARD + 
                                               "\n|Номер\t|Название\t|Природная зона\t\t|Затраты на корм (1 день)\t" +
                                               "|Кол-во жив-х опр. пр. зоны\t|Денег на содержание животного в месяц |\n" +
-                                              Employee.BOARD);
-                            foreach (Employee employees in employeesQueue)
+                                              Animal.BOARD);
+                            foreach (Animal animal in animalsQueue)
                             {
-                                Console.WriteLine($"|{employeesCounter++}\t|{employees}");
+                                Console.WriteLine($"|{animalsCounter++}\t|{animal}");
                             }
                         }
                         else
@@ -130,9 +130,9 @@ namespace c_sharp_lab_2
                     }
 
                     case "3":
-                        if (employeesQueue.Count != 0)
+                        if (animalsQueue.Count != 0)
                         {
-                            employeesQueue.Dequeue();
+                            animalsQueue.Dequeue();
                             Console.WriteLine("Животное успешно удалёно из начала списка");
                         }
                         else
@@ -143,30 +143,30 @@ namespace c_sharp_lab_2
                         break;
                     case "4":
                     {
-                        employeesCounter = 0;
+                        animalsCounter = 0;
                         int maxFee = 0; // создаем переменную чтобы сравнивать с ней затраты на содержание каждого животного
-                        if (employeesQueue.Count != 0)
+                        if (animalsQueue.Count != 0)
                         {
                             Console.WriteLine("Животные на содержание которых уходит больше всего денег:");
-                            Console.WriteLine(Employee.BOARD + 
+                            Console.WriteLine(Animal.BOARD + 
                                               "\n|Номер\t|Название\t|Природная зона\t\t|Затраты на корм (1 день)\t" +
                                               "|Кол-во жив-х опр. пр. зоны\t|Денег на содержание животного в месяц |\n" +
-                                              Employee.BOARD);
-                            foreach (Employee employees in employeesQueue)
+                                              Animal.BOARD);
+                            foreach (Animal animal in animalsQueue)
                             {
-                                int checkedFee = employees.MonthFee;
+                                int checkedFee = animal.MonthFee;
                                 if (checkedFee > maxFee) // поиск эивотного на содержание которого уходит больше всего денег
                                 {
                                     maxFee = checkedFee;
                                 }
                             }
                     
-                            foreach (Employee employees in employeesQueue) // вывод информации о самом пожилом сотруднике
+                            foreach (Animal animal in animalsQueue) // вывод информации о самом пожилом сотруднике
                             {
-                                employeesCounter++;
-                                if (employees.MonthFee == maxFee) 
+                                animalsCounter++;
+                                if (animal.MonthFee == maxFee) 
                                 {
-                                    Console.WriteLine(employeesCounter + "\t" + employees);
+                                    Console.WriteLine(animalsCounter + "\t" + animal);
                                 }
                             }
                         }
@@ -179,8 +179,8 @@ namespace c_sharp_lab_2
                     }
                     case "5":
                     {
-                        employeesCounter = 0;
-                        if (employeesQueue.Count != 0)
+                        animalsCounter = 0;
+                        if (animalsQueue.Count != 0)
                         {
                             Console.WriteLine("Введите, максимальное количество животных:");
                             if (!(int.TryParse(Console.ReadLine(), out var searchingCount) && searchingCount > 0))
@@ -192,19 +192,19 @@ namespace c_sharp_lab_2
                             Console.WriteLine("Введите природную зону для поиска: ");
                             string searchingArea = Console.ReadLine();
                     
-                            Console.WriteLine(Employee.BOARD + 
+                            Console.WriteLine(Animal.BOARD + 
                                               "\n|Номер\t|Название\t|Природная зона\t\t|Затраты на корм (1 день)\t" +
                                               "|Кол-во жив-х опр. пр. зоны\t|Денег на содержание животного в месяц |\n" +
-                                              Employee.BOARD);
+                                              Animal.BOARD);
                     
                             bool isFindSomething = false; //нашли ли что-то 
-                            foreach (Employee employees in employeesQueue) // вывод информации в зависимости от количества жтвотных и природной зоны
+                            foreach (Animal animal in animalsQueue) // вывод информации в зависимости от количества жтвотных и природной зоны
                             {
-                                employeesCounter++;
-                                if (employees.NaturalArea.Equals(searchingArea) &&
-                                    employees.CountAnimal <= searchingCount) //сравнение строк и вычисление возраста и дальнейшее его сравнение с искомым
+                                animalsCounter++;
+                                if (animal.NaturalArea.Equals(searchingArea) &&
+                                    animal.CountAnimal <= searchingCount) //сравнение строк и вычисление возраста и дальнейшее его сравнение с искомым
                                 {
-                                    Console.WriteLine(employeesCounter + "\t" + employees);
+                                    Console.WriteLine(animalsCounter + "\t" + animal);
                                     isFindSomething = true;
                                 }
                             }
@@ -224,26 +224,26 @@ namespace c_sharp_lab_2
 
                     case "6":
                     {
-                        Employee searchingEmployee = new Employee();
+                        Animal searchingAnimal = new Animal();
                         Console.WriteLine("Введите название животного для поиска:");
-                        searchingEmployee.AnimalName = Console.ReadLine();//тут создается новое животное, так проще проверить
-                        employeesCounter = 0;
-                        Console.WriteLine("Поиск животного с названием "+searchingEmployee.AnimalName);
-                        if (employeesQueue.Count != 0)
+                        searchingAnimal.AnimalName = Console.ReadLine();//тут создается новое животное, так проще проверить
+                        animalsCounter = 0;
+                        Console.WriteLine("Поиск животного с названием "+searchingAnimal.AnimalName);
+                        if (animalsQueue.Count != 0)
                         {
 
-                            Console.WriteLine(Employee.BOARD + 
+                            Console.WriteLine(Animal.BOARD + 
                                               "\n|Номер\t|Название\t|Природная зона\t\t|Затраты на корм (1 день)\t" +
                                               "|Кол-во жив-х опр. пр. зоны\t|Денег на содержание животного в месяц |\n" +
-                                              Employee.BOARD);
+                                              Animal.BOARD);
 
                             bool isFindSomething = false; //нашли ли что-то 
-                            foreach (Employee employees in employeesQueue)
+                            foreach (Animal animal in animalsQueue)
                             {
-                                employeesCounter++;
-                                if (employees.AnimalName.Equals(searchingEmployee.AnimalName))
+                                animalsCounter++;
+                                if (animal.AnimalName.Equals(searchingAnimal.AnimalName))
                                 {
-                                    Console.WriteLine(employeesCounter + "\t" + employees);
+                                    Console.WriteLine(animalsCounter + "\t" + animal);
                                     isFindSomething = true;
                                 }
                             }
@@ -273,13 +273,13 @@ namespace c_sharp_lab_2
             //запись в динарный файл
             using (BinaryWriter binaryWriter = new BinaryWriter(File.Open(filename, FileMode.Create)))
             {
-                foreach (Employee employees in employeesQueue)
+                foreach (Animal animal in animalsQueue)
                 {
-                    binaryWriter.Write(employees.AnimalName);
-                    binaryWriter.Write(employees.NaturalArea);
-                    binaryWriter.Write(employees.FeedCosts);
-                    binaryWriter.Write(employees.CountAnimal);
-                    binaryWriter.Write(employees.MonthFee);
+                    binaryWriter.Write(animal.AnimalName);
+                    binaryWriter.Write(animal.NaturalArea);
+                    binaryWriter.Write(animal.FeedCosts);
+                    binaryWriter.Write(animal.CountAnimal);
+                    binaryWriter.Write(animal.MonthFee);
                 }
 
                 Console.WriteLine("Данные успешно записаны в файл");
