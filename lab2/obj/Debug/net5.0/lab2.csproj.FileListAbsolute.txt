@@ -1,0 +1,15 @@
+/Users/karimkabirov/RiderProjects/ConsoleApp1/lab2/bin/Debug/net5.0/lab2.deps.json
+/Users/karimkabirov/RiderProjects/ConsoleApp1/lab2/bin/Debug/net5.0/lab2.runtimeconfig.json
+/Users/karimkabirov/RiderProjects/ConsoleApp1/lab2/bin/Debug/net5.0/lab2.runtimeconfig.dev.json
+/Users/karimkabirov/RiderProjects/ConsoleApp1/lab2/bin/Debug/net5.0/lab2.dll
+/Users/karimkabirov/RiderProjects/ConsoleApp1/lab2/bin/Debug/net5.0/ref/lab2.dll
+/Users/karimkabirov/RiderProjects/ConsoleApp1/lab2/bin/Debug/net5.0/lab2.pdb
+/Users/karimkabirov/RiderProjects/ConsoleApp1/lab2/obj/Debug/net5.0/lab2.csproj.AssemblyReference.cache
+/Users/karimkabirov/RiderProjects/ConsoleApp1/lab2/obj/Debug/net5.0/lab2.GeneratedMSBuildEditorConfig.editorconfig
+/Users/karimkabirov/RiderProjects/ConsoleApp1/lab2/obj/Debug/net5.0/lab2.AssemblyInfoInputs.cache
+/Users/karimkabirov/RiderProjects/ConsoleApp1/lab2/obj/Debug/net5.0/lab2.AssemblyInfo.cs
+/Users/karimkabirov/RiderProjects/ConsoleApp1/lab2/obj/Debug/net5.0/lab2.csproj.CoreCompileInputs.cache
+/Users/karimkabirov/RiderProjects/ConsoleApp1/lab2/obj/Debug/net5.0/lab2.dll
+/Users/karimkabirov/RiderProjects/ConsoleApp1/lab2/obj/Debug/net5.0/ref/lab2.dll
+/Users/karimkabirov/RiderProjects/ConsoleApp1/lab2/obj/Debug/net5.0/lab2.pdb
+/Users/karimkabirov/RiderProjects/ConsoleApp1/lab2/obj/Debug/net5.0/lab2.genruntimeconfig.cache
